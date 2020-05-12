@@ -1,0 +1,76 @@
+using namespace std;
+#include<bits/stdc++.h>
+
+class process
+{
+public :
+int pno,pr,at,bt,st,wt,ct,tat;
+
+};
+//st-service time
+int main()
+{
+int n;
+process p[20];
+cout<<"Enter no of Process:\n";
+cin>>n;
+cout<<"Pno AT BT  Priority\n";
+for(int i=0;i<n;i++)
+{
+cout<<(p[i].pno=(i+1));cin>>p[i].at>>p[i].bt>>p[i].pr;
+
+}
+
+for(int i=n-1;i>=0;i--)
+{
+    int max=i;
+for(int j=i-1;j>=0;j--)
+ { 
+     if(p[j].pr<p[max].pr)
+     
+     max=j;  
+     
+     
+}
+    
+   process temp;
+   
+   temp=p[max];
+   p[max]=p[i];
+   p[i]=temp;
+    
+    }
+        
+p[0].st=0;
+for(int i=1;i<n;i++)
+ {
+   p[i].st=p[i-1].st+p[i-1].bt;
+   p[i-1].ct=p[i-1].st+p[i-1].bt;
+     
+     }
+     p[n-1].ct=p[n-1].st+p[n-1].bt;
+
+p[0].at=0;
+
+for(int i=0;i<n;i++)
+{
+    p[i].wt=p[i].st-p[i].at;
+    p[i].tat=p[i].ct-p[i].bt;
+    
+    }
+    float wT=0,taT=0;
+for(int i=0;i<n;i++)
+
+{wT=wT+p[i].wt;
+taT=taT+p[i].tat;
+    }
+cout<<"Pno\tAT\tBT\tPriority\tst\tct\twt\ttat\n";
+
+for(int i=0;i<n;i++)
+{
+cout<<(p[i].pno)<<"\t"<<p[i].at<<"\t "<<p[i].bt<<"\t"<<p[i].pr<<"\t \t"<<p[i].st<<"\t"<<p[i].ct<<"\t"<<p[i].wt<<"\t"<<p[i].tat<<"\n";
+
+}
+cout<<"Average Waiting time="<<wT/n<<"\n"<<"Average TAT time ="<<taT/n;
+return 0;	
+}

@@ -1,0 +1,21 @@
+1.s-ceiling(sqrt(N))
+2.preprocess ans for each block
+3.query L to R combine ans from blocks
+
+eg. Range some queries
+ 
+  brute force             Mo,s Algorithm
+  sum(L,R) -O(N)          sum(L,R)-O(sqrt(N))
+  update(i,v)-O(1)        update(i,v)-O(1)
+
+
+B0 B1 ...BS-1
+
+
+BK-{K*S  to  min(N-1,(K+1)(S-1))}
+
+post-prepocessing
+ 
+ 1. Query L,R
+ 2. 
+
